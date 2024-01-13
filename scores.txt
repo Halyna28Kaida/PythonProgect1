@@ -1,0 +1,15 @@
+Hala: 11
+Jana: 6
+Jan: 6
+Max: 6
+Vlad: 12
+Andrew: 8
+Alex: 9
+Carl: 20
+Otto: 14
+Anna: 12
+Simona: 14
+Luk: 11
+Anton: 0
+George: 13
+Boris: 30
