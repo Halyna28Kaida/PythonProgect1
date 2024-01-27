@@ -1,6 +1,6 @@
-lives = 5
-stone = "stone"
-scissors = "scissors"
-paper = "paper"
-LIST_CHOICE = [stone, scissors, paper]
-BATTLE_LIST = [[stone, scissors], [scissors, paper], [paper, scissors]]
+LIVES = 5
+STONE = "stone"
+SCISSORS = "scissors"
+PAPER = "paper"
+LIST_CHOICE = [STONE, SCISSORS, PAPER]
+BATTLE_LIST = [[STONE, SCISSORS], [SCISSORS, PAPER], [PAPER, STONE]]

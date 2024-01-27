@@ -13,3 +13,5 @@ Luk: 11
 Anton: 0
 George: 13
 Boris: 30
+Hala: 5
+

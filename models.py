@@ -1,6 +1,6 @@
-from settings import lives, LIST_CHOICE, BATTLE_LIST
+from settings import LIVES, LIST_CHOICE, BATTLE_LIST
 import random
-from game_exceptions import EnemyDown, GameOver
+from game_exceptions import EnemyDown, GameOver, IncorrectName
 
 
 class Enemy:
@@ -14,13 +14,18 @@ class Enemy:
         :param level:
         :return:
         """
+        if not isinstance(level, int):
+            raise TypeError("It is not a number.")
+        if not level:
+            raise ValueError("Cannot be zero.")
+        if level < 0:
+            raise ValueError("Cannot be negative.")
         self.level = level
         self.lives = level
 
-    # @staticmethod
-    def select_attack(self):
-        self.enemy_choice = random.choice(LIST_CHOICE)
-        return self.enemy_choice
+    @staticmethod
+    def select_attack():
+        return random.choice(LIST_CHOICE)
 
     def decrease_lives(self):
         self.lives -= 1
@@ -30,17 +35,18 @@ class Enemy:
 
 class Player:
     name: str
-    lives: int = lives
+    lives: int = LIVES
     score: int = 0
-    battle: list
-    player_choice: list
 
     def __init__(self, name: str):
         """
 
         :param name:
         """
-        self.name = name
+        if not name:
+            raise IncorrectName
+        else:
+            self.name = name
 
     @staticmethod
     def get_int():
@@ -55,15 +61,18 @@ class Player:
             except ValueError:
                 print("It isn't a number. Please, try again.")
 
-    def fight(self, player_choice, enemy_choice):
-        self.battle = [player_choice, enemy_choice]
+    @staticmethod
+    def fight(player_choice: str, enemy_choice: str):
+        if player_choice not in LIST_CHOICE:
+            raise ValueError
+        if enemy_choice not in LIST_CHOICE:
+            raise ValueError
         if enemy_choice == player_choice:
             return 0
+        if [player_choice, enemy_choice] in BATTLE_LIST:
+            return 1
         else:
-            if self.battle in BATTLE_LIST:
-                return 1
-            else:
-                return -1
+            return -1
 
     def decrease_lives(self):
         self.lives -= 1
@@ -94,5 +103,4 @@ class Player:
                 print("You missed")
 
         print(f"Your lives: {self.lives}\nEnemy lives: {enemy.lives}")
-
 

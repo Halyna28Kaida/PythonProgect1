@@ -8,3 +8,10 @@ class EnemyDown(Exception):
     """
 
     """
+
+
+class IncorrectName(Exception):
+    """
+
+    """
+
